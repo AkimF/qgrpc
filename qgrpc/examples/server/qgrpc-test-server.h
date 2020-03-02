@@ -1,6 +1,7 @@
 #ifndef QGRPC_TEST_SERVER_H
 #define QGRPC_TEST_SERVER_H
 
+#include "pingpong.grpc.pb.h"
 #include "pingpong.qgrpc.server.h"
 
 #include <unordered_map>

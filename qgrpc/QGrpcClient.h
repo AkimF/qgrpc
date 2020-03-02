@@ -268,7 +268,7 @@ namespace QGrpcCliBase
         FuncType channelStateChangedSignal_;
         bool not_connected_notified_;
         CompletionQueue cq_;
-        friend typename SERVICE;
+        friend SERVICE;
     public:
         explicit MonitorFeatures(AbstractConnectivityFeatures* conn, FuncType signal) : conn_(conn), channelStateChangedSignal_(signal), not_connected_notified_(false) {}
         virtual bool CheckCQ() override

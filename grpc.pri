@@ -23,7 +23,7 @@ isEmpty(GRPC_VERSION_OK) {
 }
 
 
-PROTOC3_NAME=protoc3
+PROTOC3_NAME=protoc
 GRPC_PREFIX_PATH=
 
 unix {
@@ -49,9 +49,8 @@ INCLUDEPATH = "$$GRPC_PREFIX_PATH/include" $$INCLUDEPATH
 win32: LIBS += -L"$$GRPC_PREFIX_PATH\win32-msvc2015\grpc" #path to libs
 ###error("$$INCLUDEPATH")
 
-### Описываем "компилятор" .proto --> C++ Source, .cc файл:
+### Configure protoc for source files:
 # Наш вход - это файлы, перечисленные в PROTOC.
-
 
 protoc3.input = GRPC
 protoc3.output  = ${QMAKE_FILE_BASE}.pb.cc
@@ -61,7 +60,7 @@ unix:  protoc3.commands = $$GRPC_PREFIX_PATH/bin/$$PROTOC3_NAME --proto_path=${Q
 win32: protoc3.commands = $$PROTOC3_NAME --proto_path=${QMAKE_FILE_PATH} --cpp_out="$$_PRO_FILE_PWD_"  ${QMAKE_FILE_IN}
 protoc3.dependency_type = TYPE_C                                         
 
-## Описываем "компилятор" .proto --> C++ Source, .h файл:
+## Configure protoc for header files:
 protoc3_h.input = GRPC
 protoc3_h.output  =${QMAKE_FILE_BASE}.pb.h
 protoc3_h.CONFIG += no_link target_predeps
